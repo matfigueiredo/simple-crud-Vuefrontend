@@ -46,8 +46,12 @@ export default defineComponent({
   },
   methods: {
     async fetchUsers() {
-      const { data } = await axios.get('/users')
-      this.users = data
+      try {
+        const { data } = await axios.get('/users')
+        this.users = data
+      } catch (error) {
+        console.warn(error)
+      }
     },
     async createUser() {
       try {
